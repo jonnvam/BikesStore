@@ -20,10 +20,12 @@ public class inicio extends javax.swing.JFrame {
         initComponents();
         InitStyles();
     }
-    
+     
     private void InitStyles(){
         dateTxt.setBackground(Color.black);
         dateTxt.putClientProperty( "FlatLaf.style", "font: 24 $light.font" );
+        titleTxt.setBackground(Color.black);
+        titleTxt.putClientProperty( "FlatLaf.style", "font: bold $h1.regular.font" );
     }
 
     /**
@@ -37,6 +39,8 @@ public class inicio extends javax.swing.JFrame {
 
         backGround = new javax.swing.JPanel();
         menu = new javax.swing.JPanel();
+        titleTxt = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
         header = new javax.swing.JPanel();
         dateTxt = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -48,15 +52,29 @@ public class inicio extends javax.swing.JFrame {
         menu.setBackground(new java.awt.Color(243, 94, 69));
         menu.setPreferredSize(new java.awt.Dimension(270, 640));
 
+        titleTxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleTxt.setText("Bikes Store");
+
+        jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
+
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
         menuLayout.setHorizontalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 270, Short.MAX_VALUE)
+            .addComponent(titleTxt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(menuLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGroup(menuLayout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addComponent(titleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(494, Short.MAX_VALUE))
         );
 
         header.setBackground(new java.awt.Color(255, 102, 102));
@@ -157,6 +175,8 @@ public class inicio extends javax.swing.JFrame {
     private javax.swing.JLabel dateTxt;
     private javax.swing.JPanel header;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPanel menu;
+    private javax.swing.JLabel titleTxt;
     // End of variables declaration//GEN-END:variables
 }
