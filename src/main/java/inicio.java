@@ -1,13 +1,18 @@
 
+import com.company.views.principal;
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import javax.swing.JPanel;
+
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author mvjxd
@@ -22,25 +27,42 @@ public class inicio extends javax.swing.JFrame {
         InitStyles();
         //metodo de mostrar fecha
         SetDate();
-    }
-     
-    private void InitStyles(){
-        dateTxt.setBackground(Color.black);
-        dateTxt.putClientProperty( "FlatLaf.style", "font: 24 $light.font" );
-        titleTxt.setBackground(Color.black);
-        titleTxt.putClientProperty( "FlatLaf.style", "font: bold $h1.regular.font" );
-    }
-    //Creacion del metodo para la fecha
-    
-    private void SetDate(){
-        LocalDate now = LocalDate.now();
-        int year = now.getYear();
-        int dia = now.getDayOfMonth();
-        int mes = now.getMonthValue();
-        String[] meses = {"enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"};
-        dateTxt.setText("Hoy es "+dia+ " de "+meses[mes - 1]+ " de " + year);
+        InitContent();
+        
     }
 
+    private void InitStyles() {
+        dateTxt.setBackground(Color.black);
+        dateTxt.putClientProperty("FlatLaf.style", "font: 24 $light.font");
+        titleTxt.setBackground(Color.black);
+        titleTxt.putClientProperty("FlatLaf.style", "font: bold $h1.regular.font");
+    }
+    //Creacion del metodo para la fecha
+
+    private void SetDate() {
+        LocalDate now = LocalDate.now();
+        Locale spanishLocale = new Locale("es", "ES");
+        dateTxt.setText(now.format(DateTimeFormatter.ofPattern("'Hoy es' EEEE dd 'de' MMMM 'de' yyyy", spanishLocale)));
+    }
+
+    //Enlazar la presentacion
+    private void InitContent(){
+        ShowJPanel(new principal());
+    }
+    private void ShowJPanel(JPanel p){
+        principal p1 = new principal();
+        p1.setSize(750,430);
+        p1.setLocation(0, 0);
+        
+        content.removeAll();
+        content.add(p1, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
+    }
+    
+    
+  
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,6 +86,7 @@ public class inicio extends javax.swing.JFrame {
         content = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1020, 640));
         setPreferredSize(new java.awt.Dimension(1020, 640));
 
         backGround.setBackground(new java.awt.Color(255, 255, 255));
@@ -166,24 +189,27 @@ public class inicio extends javax.swing.JFrame {
         menu.setLayout(menuLayout);
         menuLayout.setHorizontalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(menuLayout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(b5, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(b2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(b1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(b3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(b4, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(titleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(menuLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLayout.createSequentialGroup()
-                .addGap(73, 73, 73)
+                .addGap(48, 48, 48)
                 .addComponent(titleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
+                .addGap(37, 37, 37)
                 .addComponent(b5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(b2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -196,6 +222,7 @@ public class inicio extends javax.swing.JFrame {
         );
 
         header.setBackground(new java.awt.Color(255, 102, 102));
+        header.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         header.setPreferredSize(new java.awt.Dimension(750, 150));
 
         dateTxt.setText("Hoy es {dayname} {day} de {month} del {year}");
@@ -207,7 +234,7 @@ public class inicio extends javax.swing.JFrame {
             .addGroup(headerLayout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addComponent(dateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,7 +254,7 @@ public class inicio extends javax.swing.JFrame {
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 410, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout backGroundLayout = new javax.swing.GroupLayout(backGround);
@@ -235,15 +262,13 @@ public class inicio extends javax.swing.JFrame {
         backGroundLayout.setHorizontalGroup(
             backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backGroundLayout.createSequentialGroup()
-                .addGroup(backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(backGroundLayout.createSequentialGroup()
-                        .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(backGroundLayout.createSequentialGroup()
-                        .addGap(267, 267, 267)
-                        .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, 752, Short.MAX_VALUE)))
+                .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backGroundLayout.createSequentialGroup()
+                .addGap(266, 266, 266)
+                .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE))
         );
         backGroundLayout.setVerticalGroup(
             backGroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
